@@ -1,0 +1,53 @@
+<!--Profile html layout page-->
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-header">
+        <h1>Welcome, {{ user.username }}!</h1>
+        <p>Email: {{ user.email }}</p>
+    </div>
+
+    <div class="user-reviews">
+        <h2>Your Reviews</h2>
+        {% if reviews %}
+            {% for review_data in reviews %}
+                <div class="review-card">
+                    <div class="review-header">
+                        <h3>
+                            <a href="{{ url_for('routes.game_detail', game_id=review_data.game.rawg_id) }}">
+                                {{ review_data.game.title }}
+                            </a>
+                        </h3>
+                        <span class="review-date">{{ review_data.review.created_at.strftime('%B %d, %Y') }}</span>
+                    </div>
+                    
+                    <div class="stars-display">
+                        {% for i in range(review_data.review.rating) %}
+                            <i class="fas fa-star"></i>
+                        {% endfor %}
+                        {% for i in range(5 - review_data.review.rating) %}
+                            <i class="far fa-star"></i>
+                        {% endfor %}
+                    </div>
+                    
+                    {% if review_data.review.comment %}
+                        <div class="review-content">
+                            {{ review_data.review.comment }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-reviews">You haven't reviewed any games yet.</p>
+        {% endif %}
+    </div>
+
+    <div class="profile-actions">
+        <form action="{{ url_for('routes.logout') }}" method="POST">
+            <button type="submit" class="btn">Logout</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

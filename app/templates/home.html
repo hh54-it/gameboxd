@@ -1,0 +1,30 @@
+<!--Home page html setting the layout of the home page-->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-container">
+    <div class="home-logo">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="GameBoxD Logo">
+    </div>
+    
+    <div class="home-content">
+        <h1>Welcome to GameBoxD</h1>
+        <p class="tagline">Your personal game collection and review platform</p>
+        
+        {% if current_user.is_authenticated %}
+            <div class="welcome-box">
+                <p>Welcome back, {{ current_user.username }}!</p>
+                <a href="{{ url_for('routes.profile') }}" class="btn">View your profile</a>
+            </div>
+        {% else %}
+            <div class="welcome-box">
+                <p>Please login or register to start reviewing games.</p>
+                <div class="auth-buttons">
+                    <a href="{{ url_for('routes.login') }}" class="btn">Login</a>
+                    <a href="{{ url_for('routes.register') }}" class="btn btn-outline">Register</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

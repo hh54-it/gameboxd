@@ -1,0 +1,43 @@
+<!--HTML code for the base so it has a template for all pages-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameBoxD</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('routes.home') }}">Home</a></li>
+            <li><a href="{{ url_for('routes.games') }}">Games</a></li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('routes.profile') }}">Profile</a></li>
+                <li><a href="{{ url_for('routes.logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('routes.register') }}">Register</a></li>
+                <li><a href="{{ url_for('routes.login') }}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for category, message in messages %}
+                        <li class="flash {{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
+

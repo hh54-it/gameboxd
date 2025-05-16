@@ -1,0 +1,687 @@
+
+/* Base styles and variables */
+:root {
+    --primary-color: #00e054;
+    --primary-hover: #00b043;
+    --background-dark: #1a1d24;
+    --card-bg: #2c3440;
+    --text-primary: #ffffff;
+    --text-secondary: #aaaaaa;
+    --border-color: #3d4754;
+    --danger-color: #ff4545;
+    --success-color: #00e054;
+}
+
+/* body styles */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1d24 0%, #2c3440 100%);
+    color: var(--text-primary);
+    position: relative;
+}
+
+/* Adding the pattern that goes on top of the body */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+    z-index: -1;
+}
+
+
+/* Nav styles */
+nav {
+    background-color: rgba(44, 52, 64, 0.9);
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #00e054;
+}
+
+/* Container for main content- how the colors of the main stuff look */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Flash messages that pop up when you do something */
+.flash {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.flash.success {
+    background-color: #00e054;
+    color: white;
+}
+
+.flash.danger {
+    background-color: #ff4545;
+    color: white;
+}
+
+/* Auth forms */
+.auth-links {
+    margin-top: 20px;
+}
+
+.auth-links a {
+    color: #00e054;
+    text-decoration: none;
+}
+
+h1 {
+    color: #2c3440;
+    margin-bottom: 1rem;
+}
+
+/* Games grid styles */
+.games-container h1 {
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.game-card {
+    background: #2c3440;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+}
+
+.game-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.game-info {
+    padding: 10px;
+    color: white;
+}
+
+.game-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.game-release-date {
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+/* Game card styles */
+.game-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.no-image {
+    height: 300px;
+    background: #1c2028;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+}
+
+.game-rating {
+    color: #00e054;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+/* Pagination styles/ how the pages look */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #00e054;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin: 0 5px;
+}
+
+.btn:hover {
+    background: #00b043;
+}
+
+/* Game detail styles page */
+.game-detail {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.game-header {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.game-cover {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.game-info {
+    flex: 1;
+}
+
+.game-meta {
+    margin: 15px 0;
+    color: #666;
+}
+
+.game-meta span {
+    margin-right: 20px;
+}
+
+.game-description {
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.game-platforms {
+    background: #2c3440;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.game-platforms h3 {
+    color: white;
+    margin-top: 0;
+}
+
+.game-platforms ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.game-platforms li {
+    background: #1c2028;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+/* Rating games styles */
+.rating-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: #2c3440;
+    border-radius: 8px;
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 5px;
+    margin: 20px 0;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    cursor: pointer;
+    color: #666;
+    font-size: 24px;
+    transition: all 0.2s;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+    color: #00e054;
+}
+
+.current-rating {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #3d4754;
+}
+
+.current-rating p {
+    margin: 0 0 10px 0;
+    color: #aaa;
+}
+
+.stars-display {
+    color: #00e054;
+    font-size: 20px;
+}
+
+.stars-display .far {
+    color: #666;
+}
+
+.btn {
+    background: #00e054;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.btn:hover {
+    background: #00b043;
+}
+
+/* Game detail styles updated */
+.game-detail {
+    color: #fff;
+}
+
+.game-header h1 {
+    color: #fff;
+    margin-top: 0;
+}
+
+/* styling the average rating */
+.gameboxd-rating {
+    margin-top: 20px;
+    padding: 15px;
+    background: #2c3440;
+    border-radius: 8px;
+}
+
+.gameboxd-rating h3 {
+    margin: 0 0 10px 0;
+    color: #fff;
+    font-size: 1.2em;
+}
+
+.average-rating {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.average-rating .stars-display {
+    color: #00e054;
+    font-size: 24px;
+}
+
+.rating-stats {
+    color: #fff;
+}
+
+.rating-stats .average {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #00e054;
+}
+
+.rating-stats .total-ratings {
+    margin-left: 5px;
+    color: #aaa;
+    font-size: 0.9em;
+}
+
+/* Update existing game-meta styles */
+.game-meta {
+    margin: 15px 0;
+    color: #aaa;
+}
+
+.game-meta span {
+    margin-right: 20px;
+}
+
+.game-meta .rating {
+    color: #00e054;
+}
+
+/* Review form styles */
+.review-text {
+    margin: 20px 0;
+}
+
+.review-text textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    border: 1px solid #3d4754;
+    border-radius: 4px;
+    background: #1c2028;
+    color: #fff;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.review-text textarea:focus {
+    outline: none;
+    border-color: #00e054;
+}
+
+/* Reviews section styles */
+.reviews-section {
+    margin-top: 40px;
+}
+
+.reviews-section h3 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.review-card {
+    background: #2c3440;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.reviewer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.reviewer-name {
+    color: #00e054;
+    font-weight: bold;
+}
+
+.review-date {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.review-content {
+    color: #fff;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.no-reviews {
+    color: #666;
+    font-style: italic;
+}
+
+.stars-display {
+    font-size: 14px;
+    color: #00e054;
+}
+
+/* Search form styles */
+.search-form {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+    max-width: 600px;
+}
+
+.search-form input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #3d4754;
+    border-radius: 4px;
+    background: #1c2028;
+    color: #fff;
+    font-size: 14px;
+}
+
+.search-form input[type="text"]:focus {
+    outline: none;
+    border-color: #00e054;
+}
+
+.search-form .btn {
+    white-space: nowrap;
+}
+
+/* Profile page styles */
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.profile-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #3d4754;
+}
+
+.profile-header h1 {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.profile-header p {
+    color: #aaa;
+}
+
+.user-reviews {
+    margin-top: 30px;
+}
+
+.user-reviews h2 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.review-card {
+    background: #2c3440;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.review-header h3 {
+    margin: 0;
+}
+
+.review-header h3 a {
+    color: #00e054;
+    text-decoration: none;
+}
+
+.review-header h3 a:hover {
+    text-decoration: underline;
+}
+
+.review-date {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.review-content {
+    margin-top: 15px;
+    color: #fff;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.no-reviews {
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+    background: #2c3440;
+    border-radius: 8px;
+}
+
+.profile-actions {
+    margin-top: 30px;
+    text-align: center;
+}
+
+/* Home page styles */
+.home-container {
+    min-height: calc(100vh - 80px); /* Subtract nav height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #1a1d24 0%, #2c3440 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Another pattern overlay */
+.home-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+}
+
+.home-logo {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 2rem;
+}
+
+.home-logo img {
+    height: 150px; 
+    width: auto;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.home-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+.home-content h1 {
+    color: #ffffff;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tagline {
+    color: #aaaaaa;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.welcome-box {
+    background: rgba(44, 52, 64, 0.8);
+    padding: 2rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.welcome-box p {
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid #00e054;
+    color: #00e054;
+}
+
+.btn-outline:hover {
+    background: rgba(0, 224, 84, 0.1);
+}
+
+/* Respond styles*/
+@media (max-width: 768px) {
+    .home-logo img {
+        height: 120px;
+    }
+    
+    .home-content h1 {
+        font-size: 2rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+    
+    .welcome-box {
+        padding: 1.5rem;
+    }
+}

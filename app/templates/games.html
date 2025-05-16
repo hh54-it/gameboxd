@@ -1,0 +1,42 @@
+
+<!--Games page where you can see all the games and be able to search for them-->
+{%extends "base.html" %}
+
+{% block content %}
+<div class="games-container">
+    <h1>Games</h1>
+    
+    <!--search form -->
+    <form class="search-form" method="GET" action="{{ url_for('routes.games') }}">
+        <input type="text" name="search" placeholder="Search games..." value="{{ search_query }}">
+        <button type="submit" class="btn">Search</button>
+    </form>
+    
+    <div class="games-grid">
+        {% for game in games %}
+            <div class="game-card">
+                <a href="{{ url_for('routes.game_detail', game_id=game.id) }}">
+                    {% if game.background_image %}
+                        <img src="{{ game.background_image }}" alt="{{ game.name }}">
+                    {% endif %}
+                    <div class="game-info">
+                        <div class="game-title">{{ game.name }}</div>
+                        <div class="game-release-date">{{ game.released }}</div>
+                        <div class="game-rating">Rating: {{ "%.1f"|format(game.rating) }}</div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        {% if prev_page %}
+            <a href="{{ url_for('routes.games', page=current_page-1, search=search_query) }}" class="btn">Previous</a>
+        {% endif %}
+        
+        {% if next_page %}
+            <a href="{{ url_for('routes.games', page=current_page+1, search=search_query) }}" class="btn">Next</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
